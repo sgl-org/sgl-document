@@ -150,9 +150,19 @@
               "icon": "lucide-list",
               "title": "0.接口介绍 的大纲"
             }
+          },
+          {
+            "id": "adcd7be358fa962d",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
