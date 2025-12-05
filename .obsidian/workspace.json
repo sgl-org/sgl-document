@@ -150,19 +150,9 @@
               "icon": "lucide-list",
               "title": "0.接口介绍 的大纲"
             }
-          },
-          {
-            "id": "8731d7b277c9b92d",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
-            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -177,13 +167,19 @@
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "bases:创建新数据库": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "github-sync:Sync with Remote": false
     }
   },
-  "active": "f8c1872b66cab111",
+  "active": "1049a1b16fb634cb",
   "lastOpenFiles": [
-    "README.md",
+    "imag/0/SGL_logo.png",
     "0.接口介绍.md",
-    "欢迎.md"
+    "欢迎.md",
+    "README.md",
+    "imag/0",
+    "imag/新建文件夹",
+    "imag",
+    "新建文件夹"
   ]
 }
