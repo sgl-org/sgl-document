@@ -73,7 +73,7 @@ typedef struct sliding_menu {
     sgl_pixmap_t** pixmaps;    // 菜单项图片数组
     int container_width;       // 容器宽度
     int container_height;      // 容器高度
-    int text_offset_y;         // 文本标签距离容器底部的距离
+    //int text_offset_y;         // 文本标签距离容器底部的距离
 
     // 菜单项目尺寸
     int item_width_small;
@@ -198,21 +198,33 @@ void update_sliding_menu(sliding_menu_t* menu, float progress) {
 
     // 隐藏所有菜单项
 
-    //for (int i = 0; i < menu->item_count; i++) {
+    // for (int i = 0; i < menu->item_count; i++) {
 
-       // sgl_obj_set_pos(menu->items[i], 0, 0);
+    //     sgl_obj_set_pos(menu->items[i], 0, 0);
 
-       // sgl_obj_set_size(menu->items[i], 0, 0);
+    //     sgl_obj_set_size(menu->items[i], 0, 0);
 
-        // 清除按钮文本
+    //     // 清除按钮文本
 
-   // }
+    // }
 
-    // 更新文本标签位置和内容
+  
 
-    sgl_obj_set_pos(menu->text_label, 0, menu->container_height - menu->text_offset_y);
+    // 更新文本标签内容（位置和尺寸固定，无需重复设置）
 
-    sgl_obj_set_size(menu->text_label, menu->container_width, 20);
+    // 查找当前中心项并更新文本
+
+    int center_item_idx = menu->current_index;
+
+    if (menu->item_texts[center_item_idx]) {
+
+        sgl_label_set_text(menu->text_label, menu->item_texts[center_item_idx]);
+
+    } else {
+
+        sgl_label_set_text(menu->text_label, "");
+
+    }
 
     // 只显示当前项及其相邻项
 
@@ -270,6 +282,22 @@ void update_sliding_menu(sliding_menu_t* menu, float progress) {
 
         }
 
+        // // 特殊处理：当跨越边界时，调整目标距离以避免飞行动画
+
+        // if (menu->anim_direction < 0 && distance == 2 && target_distance == -3) {
+
+        //     // 从右侧瞬间出现的情况
+
+        //     target_distance = 2;
+
+        // } else if (menu->anim_direction > 0 && distance == -2 && target_distance == 3) {
+
+        //     // 从左侧瞬间出现的情况
+
+        //     target_distance = -2;
+
+        // }
+
         // 插值计算距离
 
         float interpolated_distance = distance + (target_distance - distance) * progress;
@@ -289,18 +317,6 @@ void update_sliding_menu(sliding_menu_t* menu, float progress) {
             width = menu->item_width_small + (int)((menu->item_width_large - menu->item_width_small) * t);
 
             height = menu->item_height_small + (int)((menu->item_height_large - menu->item_height_small) * t);
-
-            // 更新文本标签的内容
-
-            if (menu->item_texts[idx]) {
-
-                sgl_label_set_text(menu->text_label, menu->item_texts[idx]);
-
-            } else {
-
-                sgl_label_set_text(menu->text_label, "");
-
-            }
 
         } else if (distance_abs <= 1.5) {
 
@@ -328,7 +344,7 @@ void update_sliding_menu(sliding_menu_t* menu, float progress) {
 
         int y = (menu->container_height - height) / 2;
 
-        sgl_obj_set_pos(menu->items[idx], x, y);
+        sgl_obj_set_pos(menu->items[idx], x, y-10);
 
         sgl_obj_set_size(menu->items[idx], width, height);
 
@@ -396,9 +412,13 @@ sliding_menu_t* create_sliding_menu(sgl_obj_t* parent, int x, int y, int width, 
 
     menu->container_height = height;
 
-    menu->text_offset_y = 10;  // 默认距离容器底部10像素
+    menu->text_offset_y = 45;  // 默认距离容器底部10像素
 
     menu->item_click_callback = NULL;
+
+    sgl_obj_set_pos(menu->text_label, 0, menu->container_height - menu->text_offset_y);
+
+    sgl_obj_set_size(menu->text_label, menu->container_width, 30);
 
     // 默认启用环形运动
 
@@ -511,9 +531,6 @@ sliding_menu_t* create_sliding_menu(sgl_obj_t* parent, int x, int y, int width, 
     return menu;
 
 }
-
-  
-
 // 设置菜单项尺寸
 
 void sliding_menu_set_item_size(sliding_menu_t* menu, int width_small, int height_small, int width_large, int height_large) {
@@ -556,13 +573,13 @@ bool sliding_menu_get_circular_motion(const sliding_menu_t* menu) {
 
 // 设置文本标签距离容器底部的距离
 
-void sliding_menu_set_text_offset(sliding_menu_t* menu, int offset_y) {
+//void sliding_menu_set_text_offset(sliding_menu_t* menu, int offset_y) {
 
-    if (!menu) return;
+    //if (!menu) return;
 
-    menu->text_offset_y = offset_y;
+    //menu->text_offset_y = offset_y;
 
-}
+//}
 
   
   
@@ -921,7 +938,7 @@ int main(int argc, char *argv[])
 
         // 设置文本标签距离容器底部的距离
 
-        sliding_menu_set_text_offset(menu, 30);
+        //sliding_menu_set_text_offset(menu, 30);
 
         // 设置菜单项文本
 
