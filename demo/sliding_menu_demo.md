@@ -198,15 +198,15 @@ void update_sliding_menu(sliding_menu_t* menu, float progress) {
 
     // 隐藏所有菜单项
 
-    for (int i = 0; i < menu->item_count; i++) {
+    //for (int i = 0; i < menu->item_count; i++) {
 
-        sgl_obj_set_pos(menu->items[i], 0, 0);
+       // sgl_obj_set_pos(menu->items[i], 0, 0);
 
-        sgl_obj_set_size(menu->items[i], 0, 0);
+       // sgl_obj_set_size(menu->items[i], 0, 0);
 
         // 清除按钮文本
 
-    }
+   // }
 
     // 更新文本标签位置和内容
 
