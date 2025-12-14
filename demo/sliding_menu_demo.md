@@ -150,17 +150,11 @@ static void menu_anim_finished(sgl_anim_t* anim) {
 }
 
   
+void update_sliding_menu(sliding_menu_t *menu, float progress){
 
-// 更新滑动菜单显示
-
-void update_sliding_menu(sliding_menu_t* menu, float progress) {
-
-    if (!menu) return;
-
-  
-
-    int center_x = menu->container_width / 2;  // 容器中心点X坐标
-
+    if (!menu)
+        return;
+    int center_x = menu->container_width / 2; // 容器中心点X坐标
     // 隐藏所有菜单项
 
     // for (int i = 0; i < menu->item_count; i++) {
@@ -173,45 +167,43 @@ void update_sliding_menu(sliding_menu_t* menu, float progress) {
 
     // }
 
-  
-
-    // 更新文本标签内容（位置和尺寸固定，无需重复设置）
-
-    // 查找当前中心项并更新文本
-
-    int center_item_idx = menu->current_index;
-
-    if (menu->item_texts[center_item_idx]) {
-
-        sgl_label_set_text(menu->text_label, menu->item_texts[center_item_idx]);
-
-    } else {
-
-        sgl_label_set_text(menu->text_label, "");
-
-    }
-
     // 只显示当前项及其相邻项
 
-    for (int i = menu->current_index - 2; i <= menu->current_index + 2; i++) {
+    for (int i = menu->current_index - 2; i <= menu->current_index + 2; i++)
+
+    {
 
         int idx = i;
 
         // 处理循环索引（仅在启用环形运动时）
 
-        if (menu->circular_motion) {
+        if (menu->circular_motion)
 
-            if (idx < 0) idx += menu->item_count;
+        {
 
-            if (idx >= menu->item_count) idx -= menu->item_count;
+            if (idx < 0)
 
-        } else {
+                idx += menu->item_count;
+
+            if (idx >= menu->item_count)
+
+                idx -= menu->item_count;
+
+        }
+
+        else
+
+        {
 
             // 如果未启用环形运动，跳过超出范围的索引
 
-            if (idx < 0 || idx >= menu->item_count) continue;
+            if (idx < 0 || idx >= menu->item_count)
+
+                continue;
 
         }
+
+  
 
         // 计算当前项与当前选中项的距离
 
@@ -221,31 +213,51 @@ void update_sliding_menu(sliding_menu_t* menu, float progress) {
 
         int target_distance = idx - menu->target_index;
 
+  
+
         // 处理循环情况 - 确保使用最短路径（仅在启用环形运动时）
 
-        if (menu->circular_motion) {
+        if (menu->circular_motion)
 
-            if (distance > menu->item_count / 2) {
+        {
+
+            if (distance > menu->item_count / 2)
+
+            {
 
                 distance -= menu->item_count;
 
-            } else if (distance < -menu->item_count / 2) {
+            }
+
+            else if (distance < -menu->item_count / 2)
+
+            {
 
                 distance += menu->item_count;
 
             }
 
-            if (target_distance > menu->item_count / 2) {
+  
+
+            if (target_distance > menu->item_count / 2)
+
+            {
 
                 target_distance -= menu->item_count;
 
-            } else if (target_distance < -menu->item_count / 2) {
+            }
+
+            else if (target_distance < -menu->item_count / 2)
+
+            {
 
                 target_distance += menu->item_count;
 
             }
 
         }
+
+  
 
         // // 特殊处理：当跨越边界时，调整目标距离以避免飞行动画
 
@@ -263,71 +275,161 @@ void update_sliding_menu(sliding_menu_t* menu, float progress) {
 
         // }
 
-        // 插值计算距离
+  
 
         float interpolated_distance = distance + (target_distance - distance) * progress;
 
+  
+
         // 计算当前项的大小（根据实时距离中心的远近动态变化）
+
+  
 
         float distance_abs = sgl_abs(interpolated_distance);
 
+  
+
         int width, height;
 
-        if (distance_abs <= 0.5) {
+  
+
+        if (distance_abs <= 0.5)
+
+        {
+
+  
 
             // 中心附近项最大
 
+  
+
             float t = 1.0f - (distance_abs / 0.5f); // 0.0 - 1.0
+
+  
 
             width = menu->item_width_small + (int)((menu->item_width_large - menu->item_width_small) * t);
 
+  
+
             height = menu->item_height_small + (int)((menu->item_height_large - menu->item_height_small) * t);
 
-        } else if (distance_abs <= 1.5) {
+  
+
+            // 更新文本标签的内容
+
+  
+
+            if (menu->item_texts[idx])
+
+            {
+
+  
+
+                sgl_label_set_text(menu->text_label, menu->item_texts[idx]);
+
+            }
+
+            else
+
+            {
+
+  
+
+                sgl_label_set_text(menu->text_label, "");
+
+            }
+
+        }
+
+        else if (distance_abs <= 1.5)
+
+        {
+
+  
 
             // 中等项
 
+  
+
             float t = 1.0f - ((distance_abs - 0.5f) / 1.0f); // 0.0 - 1.0
+
+  
 
             width = menu->item_width_small + (int)((menu->item_width_large - menu->item_width_small) * 0.5f * t);
 
+  
+
             height = menu->item_height_small + (int)((menu->item_height_large - menu->item_height_small) * 0.5f * t);
 
-        } else {
+        }
+
+        else
+
+        {
+
+  
 
             // 远离中心的项
 
+  
+
             width = menu->item_width_small;
+
+  
 
             height = menu->item_height_small;
 
         }
 
+  
+
         // 计算位置（增加间距）
+
+  
 
         int x = center_x + (int)(interpolated_distance * (menu->item_width_small + 30)) - width / 2;
 
+  
+
         int y = (menu->container_height - height) / 2;
 
-        sgl_obj_set_pos(menu->items[idx], x, y-10);
+  
+
+        sgl_obj_set_pos(menu->items[idx], x, y);
+
+  
 
         sgl_obj_set_size(menu->items[idx], width, height);
 
+  
+
         // 设置按钮圆角
+
+  
 
         sgl_button_set_radius(menu->items[idx], 10);
 
+  
+
         // 如果该项有设置图片，则设置图片
 
-        if (menu->pixmaps[idx]) {
+  
+
+        if (menu->pixmaps[idx])
+
+        {
+
+  
 
             sgl_button_set_pixmap(menu->items[idx], menu->pixmaps[idx]);
 
         }
 
-    }
+  
 
-    //sgl_obj_set_dirty(menu->container);
+        //sgl_obj_set_dirty(menu->container);
+
+    }
 
 }
 
