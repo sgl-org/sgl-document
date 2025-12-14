@@ -1,67 +1,32 @@
 ```c
 #include <SDL.h>
-
 #include <stdlib.h>
-
 #include <time.h>
-
 #include <stdio.h>
-
 #include <math.h>
-
 #include <string.h>
-
-  
-
 #include <sgl.h>
-
 #include <sgl_font.h>
-
 #include <sgl_anim.h>
-
-  
-  
 
 typedef struct sgl_port_sdl2 sgl_port_sdl2_t;
 
-  
-  
-
 sgl_port_sdl2_t* sgl_port_sdl2_init(void);
-
 size_t sgl_port_sdl2_get_frame_count(sgl_port_sdl2_t* sdl2_dev);
-
 void sgl_port_sdl2_increase_frame_count(sgl_port_sdl2_t* sdl2_dev);
-
 void sgl_port_sdl2_deinit(sgl_port_sdl2_t* sdl2_dev);
-
 void flush_window_callback(void *param);
-
-  
-
 // 前向声明
-
 typedef struct sliding_menu sliding_menu_t;
-
 void update_sliding_menu(sliding_menu_t* menu, float progress);
 
-  
-  
-
 extern const unsigned char gImage_1[8192];
-
 const sgl_pixmap_t pixmap1 = {
-
     .width = 64,
-
     .height = 64,
-
     .bitmap = gImage_1,
-
 };
-
 // 滑动菜单结构体
-
 typedef struct sliding_menu {
     sgl_obj_t* container;      // 菜单容器
     sgl_obj_t** items;         // 菜单项数组
