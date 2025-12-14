@@ -327,7 +327,7 @@ void update_sliding_menu(sliding_menu_t* menu, float progress) {
 
     }
 
-    sgl_obj_set_dirty(menu->container);
+    //sgl_obj_set_dirty(menu->container);
 
 }
 
