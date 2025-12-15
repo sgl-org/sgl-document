@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "8cf4ea65f57c8c05",
+        "id": "97618659d67ade12",
         "type": "tabs",
         "children": [
           {
-            "id": "af9a8a96b06b15e9",
+            "id": "39514111a79bc6cb",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -180,10 +180,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "af9a8a96b06b15e9",
+  "active": "39514111a79bc6cb",
   "lastOpenFiles": [
-    "demo/sliding_menu_demo.md",
+    "demo/sliding_menu_demo.c.md",
     "3.button.md",
+    "demo/sliding_menu_demo.md",
+    "demo/button_anim.c",
     "README.md",
     "2.label.md",
     "1.page和rect.md",
@@ -205,7 +207,6 @@
     "imag/新建文件夹",
     "imag/0/SGL_logo.png",
     "imag/0",
-    "imag",
-    "新建文件夹"
+    "imag"
   ]
 }
