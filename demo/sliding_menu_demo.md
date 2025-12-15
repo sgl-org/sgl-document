@@ -418,11 +418,7 @@ void update_sliding_menu(sliding_menu_t *menu, float progress){
         if (menu->pixmaps[idx])
 
         {
-
-  
-
             sgl_button_set_pixmap(menu->items[idx], menu->pixmaps[idx]);
-
         }
 
   

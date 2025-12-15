@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "demo/sliding_menu_demo.md",
+                "file": "3.button.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "sliding_menu_demo"
+              "title": "3.button"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "demo/sliding_menu_demo.md",
+                "file": "3.button.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "sliding_menu_demo 的反向链接列表"
+              "title": "3.button 的反向链接列表"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "demo/sliding_menu_demo.md",
+                "file": "3.button.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "sliding_menu_demo 的出链列表"
+              "title": "3.button 的出链列表"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "demo/sliding_menu_demo.md",
+                "file": "3.button.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "sliding_menu_demo 的大纲"
+              "title": "3.button 的大纲"
             }
           },
           {
@@ -177,15 +177,14 @@
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "bases:创建新数据库": false,
-      "obsidian-git:Open Git source control": false,
-      "github-sync:Sync with Remote": false
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "af9a8a96b06b15e9",
   "lastOpenFiles": [
+    "demo/sliding_menu_demo.md",
     "3.button.md",
     "README.md",
-    "demo/sliding_menu_demo.md",
     "2.label.md",
     "1.page和rect.md",
     "imag/3/1.png",
