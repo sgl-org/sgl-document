@@ -1,4 +1,8 @@
 {
-  "theme": "moonstone",
-  "cssTheme": "Minimal"
+  "theme": "obsidian",
+  "cssTheme": "Minimal",
+  "accentColor": "",
+  "interfaceFontFamily": "Chiron GoRound TC",
+  "monospaceFontFamily": "Times New Roman",
+  "textFontFamily": "Chiron GoRound TC"
 }
