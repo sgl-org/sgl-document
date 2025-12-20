@@ -6,6 +6,6 @@
 
 1.page和rect
 
-
+2.label
 
 3.button
