@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "0.接口介绍.md",
+                "file": "2.label.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "0.接口介绍"
+              "title": "2.label"
             }
           }
         ]
@@ -182,14 +182,14 @@
   },
   "active": "39514111a79bc6cb",
   "lastOpenFiles": [
-    "1.page和rect.md",
     "3.button.md",
+    "2.label.md",
     "0.接口介绍.md",
+    "1.page和rect.md",
     "demo/sliding_menu_demo.c.md",
     "demo/sliding_menu_demo.md",
     "demo/button_anim.c",
     "README.md",
-    "2.label.md",
     "imag/3/1.png",
     "imag/3",
     "imag/1/0.png",
