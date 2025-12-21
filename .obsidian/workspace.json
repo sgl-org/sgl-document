@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "97618659d67ade12",
+        "id": "c0a8bdc7fd1e4e47",
         "type": "tabs",
         "children": [
           {
-            "id": "39514111a79bc6cb",
+            "id": "37d07170ecbe6330",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -180,11 +180,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "39514111a79bc6cb",
+  "active": "37d07170ecbe6330",
   "lastOpenFiles": [
-    "imag/4/2.png",
     "3.button.md",
     "4.textline和textbox.md",
+    "demo/sliding_menu_demo.md",
+    "imag/4/2.png",
     "imag/4/0.png",
     "imag/4/1.png",
     "imag/4",
@@ -200,7 +201,6 @@
     "imag/2",
     "imag/新建文件夹",
     "demo/sliding_menu_demo.c.md",
-    "demo/sliding_menu_demo.md",
     "demo/button_anim.c",
     "imag/3/1.png",
     "imag/3",
@@ -212,7 +212,6 @@
     "未命名 1.base",
     "欢迎.md",
     "创建链接.md",
-    "imag/1/3.png",
-    "imag/1/2.png"
+    "imag/1/3.png"
   ]
 }
