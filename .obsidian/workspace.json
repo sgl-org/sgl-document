@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2.label.md",
+                "file": "4.textline和textbox.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2.label"
+              "title": "4.textline和textbox"
             }
           }
         ]
@@ -183,8 +183,9 @@
   "active": "37d07170ecbe6330",
   "lastOpenFiles": [
     "3.button.md",
-    "2.label.md",
+    "README.md",
     "4.textline和textbox.md",
+    "2.label.md",
     "demo/sliding_menu_demo.md",
     "imag/4/2.png",
     "imag/4/0.png",
@@ -192,7 +193,6 @@
     "imag/4",
     "未命名",
     "1.page和rect.md",
-    "README.md",
     "0.接口介绍.md",
     "接口介绍.md",
     "Pasted image 20251221143939.png",
