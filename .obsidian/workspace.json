@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2.label.md",
+                "file": "3.button.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2.label"
+              "title": "3.button"
             }
           }
         ]
@@ -182,12 +182,13 @@
   },
   "active": "39514111a79bc6cb",
   "lastOpenFiles": [
+    "Pasted image 20251221143939.png",
     "3.button.md",
+    "Pasted image 20251220220352.png",
     "2.label.md",
     "imag/2/0.png",
     "imag/2",
     "imag/新建文件夹",
-    "Pasted image 20251220220352.png",
     "README.md",
     "0.接口介绍.md",
     "1.page和rect.md",
