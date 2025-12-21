@@ -8,20 +8,35 @@
         "type": "tabs",
         "children": [
           {
-            "id": "37d07170ecbe6330",
+            "id": "523396b696b24de0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "0.接口介绍.md",
+                "file": "4.textline和textbox.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "0.接口介绍"
+              "title": "4.textline和textbox"
+            }
+          },
+          {
+            "id": "62c0204cad4b06fc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4.textline和textbox.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "4.textline和textbox"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -180,20 +195,20 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "37d07170ecbe6330",
+  "active": "62c0204cad4b06fc",
   "lastOpenFiles": [
+    "3.button.md",
+    "4.textline和textbox.md",
+    "0.接口介绍.md",
+    "imag/4/2.png",
+    "imag/4/1.png",
+    "imag/4/0.png",
     "README.md",
     "2.label.md",
-    "4.textline和textbox.md",
-    "3.button.md",
     "demo/sliding_menu_demo.md",
-    "imag/4/2.png",
-    "imag/4/0.png",
-    "imag/4/1.png",
     "imag/4",
     "未命名",
     "1.page和rect.md",
-    "0.接口介绍.md",
     "接口介绍.md",
     "Pasted image 20251221143939.png",
     "Pasted image 20251220220352.png",
