@@ -12,5 +12,7 @@
 
 [[4.textline和textbox]]
 
+5.ext_img
+
 QQ交流群：544602724
 
