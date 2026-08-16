@@ -180,8 +180,24 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "418ab1d3bae23b51",
+  "active": "adcd7be358fa962d",
   "lastOpenFiles": [
+    "21.win.md",
+    "20.msgbox.md",
+    "19.roller.md",
+    "18.dropdown.md",
+    "17.checkbox.md",
+    "16.switch.md",
+    "15.slider.md",
+    "14.progress.md",
+    "13.canvas.md",
+    "12.box.md",
+    "11.arc_label.md",
+    "10.polygon.md",
+    "9.arc.md",
+    "8.ring.md",
+    "7.circle.md",
+    "6.line.md",
     "5.img_ext（用于读取外部Flash图片或压缩图片）.md",
     "4.textline和textbox.md",
     "3.button.md",
@@ -211,8 +227,6 @@
     "demo/sliding_menu_demo.c.md",
     "imag/3/1.png",
     "imag/1/0.png",
-    "imag/1/4.png",
-    "欢迎.md",
-    "创建链接.md"
+    "imag/1/4.png"
   ]
 }
