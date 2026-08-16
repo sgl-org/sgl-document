@@ -1,6 +1,6 @@
 # sgl-document
 ![](./imag/0/SGL_LOGO.png)
-这是SGL教程文档，如有问题欢迎反馈
+这是SGL教程文档，如有问题欢迎反馈（https://sgl-docs.readthedocs.io/）
 
 [[0.接口介绍]]
 

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "5.img_ext（用于读取外部Flash图片或压缩图片）.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "5.img_ext（用于读取外部Flash图片或压缩图片）"
+              "title": "README"
             }
           }
         ]
@@ -182,6 +182,7 @@
   },
   "active": "418ab1d3bae23b51",
   "lastOpenFiles": [
+    "5.img_ext（用于读取外部Flash图片或压缩图片）.md",
     "4.textline和textbox.md",
     "3.button.md",
     "2.label.md",
@@ -192,7 +193,6 @@
     "README.md",
     "SGL_widgets_demo_V1.1.zip",
     "SGL_DEMO.zip",
-    "5.img_ext（用于读取外部Flash图片或压缩图片）.md",
     "SGL_DEMO/images.c",
     "SGL_DEMO/ChironGoRoundTC_700B_24.c",
     "未命名 1.base",
