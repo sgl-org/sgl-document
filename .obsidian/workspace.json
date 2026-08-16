@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "9.arc.md",
+                "file": "2.label.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "9.arc"
+              "title": "2.label"
             }
           }
         ]
@@ -182,6 +182,14 @@
   },
   "active": "418ab1d3bae23b51",
   "lastOpenFiles": [
+    "3.button.md",
+    "9.arc.md",
+    "44.3dvortex.md",
+    "43.timer.md",
+    "42.qrcode.md",
+    "41.numberkbd.md",
+    "40.keyboard.md",
+    "39.launcher.md",
     "38.viewlist.md",
     "37.textlist.md",
     "36.2dball.md",
@@ -200,14 +208,6 @@
     "8.ring.md",
     "23.battery.md",
     "22.bar.md",
-    "7.circle.md",
-    "README.md",
-    "21.win.md",
-    "20.msgbox.md",
-    "19.roller.md",
-    "18.dropdown.md",
-    "17.checkbox.md",
-    "16.switch.md",
     "目录.base",
     "SGL_widgets_demo_V1.1.zip",
     "SGL_DEMO.zip",
