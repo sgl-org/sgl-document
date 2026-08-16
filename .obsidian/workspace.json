@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "c0a8bdc7fd1e4e47",
+        "id": "dbb37a9407229ae7",
         "type": "tabs",
         "children": [
           {
-            "id": "523396b696b24de0",
+            "id": "2db7dbda044a99bf",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "5.ext_img（用于读取外部Flash图片或压缩图片）.md",
+                "file": "demo/sliding_menu_demo.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "5.ext_img（用于读取外部Flash图片或压缩图片）"
+              "title": "sliding_menu_demo"
             }
           }
         ]
@@ -170,48 +170,49 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:新建数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "bases:创建新数据库": false,
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "523396b696b24de0",
+  "active": "2db7dbda044a99bf",
   "lastOpenFiles": [
-    "README.md",
-    "5.ext_img（用于读取外部Flash图片或压缩图片）.md",
+    "SGL_DEMO/sgl_win_demo.c",
+    "SGL_DEMO/sgl_viewlist_demo.c",
+    "SGL_DEMO/sgl_timer_demo.c",
+    "SGL_DEMO/sgl_textlist_demo.c",
+    "SGL_DEMO/sgl_textline_demo.c",
+    "SGL_DEMO/sgl_textbox_demo.c",
+    "SGL_DEMO/sgl_switch_demo.c",
+    "SGL_DEMO/sgl_statusbar_demo.c",
+    "SGL_DEMO/sgl_sprite_demo.c",
+    "SGL_DEMO/sgl_spectrum_demo.c",
+    "SGL_DEMO/sgl_slider_demo.c",
     "3.button.md",
-    "4.textline和textbox.md",
-    "imag/5/1.png",
-    "imag/5",
-    "imag/新建文件夹",
-    "2.label.md",
     "0.接口介绍.md",
+    "README.md",
+    "demo/sliding_menu_demo.md",
+    "1.page和rect.md",
+    "4.textline和textbox.md",
+    "5.ext_img（用于读取外部Flash图片或压缩图片）.md",
+    "imag/5/1.png",
+    "2.label.md",
     "imag/4/2.png",
     "imag/4/1.png",
     "imag/4/0.png",
-    "demo/sliding_menu_demo.md",
-    "imag/4",
-    "未命名",
-    "1.page和rect.md",
     "接口介绍.md",
     "Pasted image 20251221143939.png",
     "Pasted image 20251220220352.png",
     "imag/2/0.png",
-    "imag/2",
     "demo/sliding_menu_demo.c.md",
-    "demo/button_anim.c",
     "imag/3/1.png",
-    "imag/3",
     "imag/1/0.png",
-    "demo",
     "imag/1/4.png",
-    "未命名.base",
-    "未命名 2.base",
     "欢迎.md",
     "创建链接.md"
   ]
