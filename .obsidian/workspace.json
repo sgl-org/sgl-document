@@ -11,10 +11,14 @@
             "id": "e6de3c830feaa1c4",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "5.ext_img（用于读取外部Flash图片或压缩图片）.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "5.ext_img（用于读取外部Flash图片或压缩图片）"
             }
           }
         ]
@@ -176,8 +180,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "adcd7be358fa962d",
+  "active": "e6de3c830feaa1c4",
   "lastOpenFiles": [
+    "2.label.md",
+    "1.page和rect.md",
     "SGL_DEMO/images.c",
     "SGL_DEMO/ChironGoRoundTC_700B_24.c",
     "未命名 1.base",
@@ -189,15 +195,12 @@
     "SGL_DEMO/sgl_win_demo.c",
     "SGL_DEMO/sgl_viewlist_demo.c",
     "SGL_DEMO/sgl_timer_demo.c",
-    "SGL_DEMO/sgl_textlist_demo.c",
     "3.button.md",
     "0.接口介绍.md",
     "README.md",
-    "1.page和rect.md",
     "4.textline和textbox.md",
     "5.ext_img（用于读取外部Flash图片或压缩图片）.md",
     "imag/5/1.png",
-    "2.label.md",
     "imag/4/2.png",
     "imag/4/1.png",
     "imag/4/0.png",
