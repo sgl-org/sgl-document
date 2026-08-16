@@ -2,7 +2,16 @@
  * @file    sgl_timer_demo.c
  * @brief   SGL Timer 定时器控件 Demo — 覆盖所有接口
  
- sgl_timer_handler();需要在毫秒定时器里面调用这个可以把它和sgl_tick_inc(1);放一起
+ 使用sgl的timer，需要调用sgl_timer_handler();这个接口，需要在毫秒定时器里面调用这个接口，
+ 或者把它和sgl_tick_inc(1);放一起，这样可以节省定时器
+ 例如：
+//你的SysTick中断处理函数，定时时间为1ms（不一定非得是SusTick这个函数，定时器中断也可以）
+void SysTick_Handler(void)
+{
+    sgl_tick_inc(1);
+    sgl_timer_handler();//放一起
+}
+
  */
 #include "sgl_demo.h"
 #if SGD_ENABLE_TIMER

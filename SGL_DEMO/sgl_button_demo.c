@@ -16,7 +16,7 @@ static uint32_t sgd_btn_cnt = 0;
 static void sgd_btn_click(sgl_event_t *e) {
     if (e->type == SGL_EVENT_CLICKED) {
         sgd_btn_cnt++;
-        rt_kprintf("btn clicked %d\n", (int)sgd_btn_cnt);
+        sgl_log("BUTTON","btn clicked %d\n", (int)sgd_btn_cnt);
     }
 }
 
