@@ -1,3 +1,17 @@
+/**
+ * @file    button_anim.c
+ * @brief   SGL 按钮动画演示 — 基于最新版 SGL API
+ *          演示位置 / 尺寸 / 透明度 / 颜色 / 边框 / 圆角 / 中心扩展 7 种动画
+ *
+ * @note    本示例使用 sgl_port_sdl2 移植层（外部提供），请在工程中加入对应
+ *          SDL2 移植文件后编译运行。
+ *
+ * 版本适配说明（相对旧版示例的变更）：
+ *   1. sgl_task_handle()  →  sgl_task_handler()
+ *   2. sgl_anim_set_repeat_cnt(anim, n) 已移除，改为 sgl_anim_start(anim, n)
+ *   3. sgl_init() 返回 int，需检查返回值
+ *   4. sgl_pixmap_t.bitmap 改为联合体，赋值使用 .bitmap.array
+ */
 #include <SDL.h>
 #include <stdlib.h>
 #include <time.h>
@@ -15,9 +29,9 @@ void sgl_port_sdl2_increase_frame_count(sgl_port_sdl2_t* sdl2_dev);
 void sgl_port_sdl2_deinit(sgl_port_sdl2_t* sdl2_dev);
 void flush_window_callback(void *param);
 
-// 定义动画缓动函数类型宏，默认使用缓入缓出效果
+// 定义动画缓动算法宏，默认使用线性
 /*
-SGL_ANIM_PATH_EASE_IN_OUT - 缓入缓出（默认）
+SGL_ANIM_PATH_EASE_IN_OUT - 缓入缓出
 SGL_ANIM_PATH_EASE_IN - 缓入
 SGL_ANIM_PATH_EASE_OUT - 缓出
 SGL_ANIM_PATH_LINEAR - 线性
@@ -47,7 +61,7 @@ static void size_anim_path(sgl_anim_t *anim, int32_t value)
     sgl_obj_t *obj = (sgl_obj_t *)anim->data;
     if (obj) {
         // 保持宽高相等，制作缩放效果
-        sgl_obj_set_size(obj, (uint16_t)value, (uint16_t)value);
+        sgl_obj_set_size(obj, (int16_t)value, (int16_t)value);
     }
 }
 
@@ -73,7 +87,7 @@ static void color_anim_path(sgl_anim_t *anim, int32_t value)
         // 将0-120的值映射到0-360度的色相
         uint16_t hue = (value * 3) % 360;
         uint8_t r, g, b;
-        
+
         // 简单的彩虹色计算
         if (hue < 60) {
             r = 255;
@@ -100,7 +114,7 @@ static void color_anim_path(sgl_anim_t *anim, int32_t value)
             g = 0;
             b = (uint8_t)((360 - hue) * 255 / 60);
         }
-        
+
         // 使用SGL的RGB宏创建颜色
         sgl_color_t color = sgl_rgb(r, g, b);
         sgl_button_set_color(obj, color);
@@ -137,15 +151,15 @@ static void center_expand_anim_path(sgl_anim_t *anim, int32_t value)
     if (obj) {
         // 获取按钮原始中心位置
         sgl_pos_t pos = sgl_obj_get_pos(obj);
-        uint16_t width = sgl_obj_get_width(obj);
-        uint16_t height = sgl_obj_get_height(obj);
-        
+        int16_t width = sgl_obj_get_width(obj);
+        int16_t height = sgl_obj_get_height(obj);
+
         int16_t center_x = pos.x + width / 2;
         int16_t center_y = pos.y + height / 2;
-        
+
         // 设置新的尺寸
-        sgl_obj_set_size(obj, (uint16_t)value, (uint16_t)value);
-        
+        sgl_obj_set_size(obj, (int16_t)value, (int16_t)value);
+
         // 计算位置中心
         pos.x = center_x - (int16_t)value / 2;
         pos.y = center_y - (int16_t)value / 2;
@@ -153,7 +167,9 @@ static void center_expand_anim_path(sgl_anim_t *anim, int32_t value)
     }
 }
 /**
- * 动画完成回调函数 - 实现循环动画
+ * 动画完成回调函数 - 交换起始值和结束值实现往返循环
+ * @note 配合 sgl_anim_start(anim, SGL_ANIM_REPEAT_LOOP) 使用，
+ *       每次循环结束时交换 start/end，形成来回往复的动画效果。
  */
 static void anim_finish_cb(sgl_anim_t *anim)
 {
@@ -175,7 +191,7 @@ static void create_position_anim_buttons(sgl_obj_t *parent)
     sgl_label_set_text(label, "Position");
     sgl_label_set_text_color(label, SGL_COLOR_WHITE);
     sgl_label_set_font(label, &consolas24);
-    
+
     // 创建演示按钮
     sgl_obj_t *btn = sgl_button_create(parent);
     sgl_obj_set_pos(btn, 30, 50);
@@ -184,7 +200,7 @@ static void create_position_anim_buttons(sgl_obj_t *parent)
     sgl_button_set_color(btn, SGL_COLOR_BLUE);
     sgl_button_set_text_color(btn, SGL_COLOR_WHITE);
     sgl_button_set_font(btn, &consolas24);
-    
+
     // 创建位置动画
     sgl_anim_t *anim = sgl_anim_create();
     sgl_anim_set_data(anim, btn);
@@ -192,9 +208,8 @@ static void create_position_anim_buttons(sgl_obj_t *parent)
     sgl_anim_set_start_value(anim, 30);
     sgl_anim_set_end_value(anim, 150);
     sgl_anim_set_path(anim, position_anim_path, ANIM_PATH_FUNCTION);
-    sgl_anim_set_repeat_cnt(anim, SGL_ANIM_REPEAT_LOOP);
     sgl_anim_set_finish_cb(anim, anim_finish_cb);
-    sgl_anim_start(anim);
+    sgl_anim_start(anim, SGL_ANIM_REPEAT_LOOP);   // 无限循环
 }
 
 /**
@@ -204,7 +219,7 @@ extern const unsigned char gImage_2[8192];
 const sgl_pixmap_t setting_pixmap = {
     .width = 64,
     .height = 64,
-    .bitmap = gImage_2,
+    .bitmap.array = gImage_2,   // 新版本 bitmap 为联合体
 };
 static void create_size_anim_buttons(sgl_obj_t *parent)
 {
@@ -215,17 +230,15 @@ static void create_size_anim_buttons(sgl_obj_t *parent)
     sgl_label_set_text(label, "Size");
     sgl_label_set_text_color(label, SGL_COLOR_WHITE);
     sgl_label_set_font(label, &consolas24);
-    
+
     // 创建演示按钮
     sgl_obj_t *btn = sgl_button_create(parent);
     sgl_obj_set_pos(btn, 30, 150);
     sgl_obj_set_size(btn, 50, 50);
-    //sgl_button_set_text(btn, "Size");
     sgl_button_set_color(btn, SGL_COLOR_GREEN);
-    //sgl_button_set_text_color(btn, SGL_COLOR_WHITE);
     sgl_button_set_font(btn, &consolas24);
     sgl_button_set_pixmap(btn, &setting_pixmap);
-    
+
     // 创建尺寸动画
     sgl_anim_t *anim = sgl_anim_create();
     sgl_anim_set_data(anim, btn);
@@ -233,9 +246,8 @@ static void create_size_anim_buttons(sgl_obj_t *parent)
     sgl_anim_set_start_value(anim, 50);
     sgl_anim_set_end_value(anim, 80);
     sgl_anim_set_path(anim, size_anim_path, ANIM_PATH_FUNCTION);
-    sgl_anim_set_repeat_cnt(anim, SGL_ANIM_REPEAT_LOOP);
     sgl_anim_set_finish_cb(anim, anim_finish_cb);
-    sgl_anim_start(anim);
+    sgl_anim_start(anim, SGL_ANIM_REPEAT_LOOP);
 }
 
 /**
@@ -250,7 +262,7 @@ static void create_alpha_anim_buttons(sgl_obj_t *parent)
     sgl_label_set_text(label, "Alpha");
     sgl_label_set_text_color(label, SGL_COLOR_WHITE);
     sgl_label_set_font(label, &consolas24);
-    
+
     // 创建演示按钮
     sgl_obj_t *btn = sgl_button_create(parent);
     sgl_obj_set_pos(btn, 30, 260);
@@ -259,7 +271,7 @@ static void create_alpha_anim_buttons(sgl_obj_t *parent)
     sgl_button_set_color(btn, SGL_COLOR_RED);
     sgl_button_set_text_color(btn, SGL_COLOR_WHITE);
     sgl_button_set_font(btn, &consolas24);
-    
+
     // 创建透明度动画
     sgl_anim_t *anim = sgl_anim_create();
     sgl_anim_set_data(anim, btn);
@@ -267,9 +279,8 @@ static void create_alpha_anim_buttons(sgl_obj_t *parent)
     sgl_anim_set_start_value(anim, 10);
     sgl_anim_set_end_value(anim, 255);
     sgl_anim_set_path(anim, alpha_anim_path, ANIM_PATH_FUNCTION);
-    sgl_anim_set_repeat_cnt(anim, SGL_ANIM_REPEAT_LOOP);
     sgl_anim_set_finish_cb(anim, anim_finish_cb);
-    sgl_anim_start(anim);
+    sgl_anim_start(anim, SGL_ANIM_REPEAT_LOOP);
 }
 
 /**
@@ -284,7 +295,7 @@ static void create_color_anim_buttons(sgl_obj_t *parent)
     sgl_label_set_text(label, "Color Animation");
     sgl_label_set_text_color(label, SGL_COLOR_WHITE);
     sgl_label_set_font(label, &consolas24);
-    
+
     // 创建演示按钮
     sgl_obj_t *btn = sgl_button_create(parent);
     sgl_obj_set_pos(btn, 180, 50);
@@ -294,7 +305,7 @@ static void create_color_anim_buttons(sgl_obj_t *parent)
     sgl_button_set_color(btn, SGL_COLOR_RED);
     sgl_button_set_text_color(btn, SGL_COLOR_WHITE);
     sgl_button_set_font(btn, &consolas24);
-    
+
     // 创建颜色动画
     sgl_anim_t *anim = sgl_anim_create();
     sgl_anim_set_data(anim, btn);
@@ -302,9 +313,8 @@ static void create_color_anim_buttons(sgl_obj_t *parent)
     sgl_anim_set_start_value(anim, 0);
     sgl_anim_set_end_value(anim, 120);
     sgl_anim_set_path(anim, color_anim_path, ANIM_PATH_FUNCTION);
-    sgl_anim_set_repeat_cnt(anim, SGL_ANIM_REPEAT_LOOP);
     sgl_anim_set_finish_cb(anim, anim_finish_cb);
-    sgl_anim_start(anim);
+    sgl_anim_start(anim, SGL_ANIM_REPEAT_LOOP);
 }
 
 /**
@@ -319,7 +329,7 @@ static void create_border_anim_buttons(sgl_obj_t *parent)
     sgl_label_set_text(label, "Border Animation");
     sgl_label_set_text_color(label, SGL_COLOR_WHITE);
     sgl_label_set_font(label, &consolas24);
-    
+
     // 创建演示按钮
     sgl_obj_t *btn = sgl_button_create(parent);
     sgl_obj_set_pos(btn, 180, 150);
@@ -329,7 +339,7 @@ static void create_border_anim_buttons(sgl_obj_t *parent)
     sgl_button_set_text_color(btn, SGL_COLOR_BLACK);
     sgl_button_set_font(btn, &consolas24);
     sgl_button_set_border_color(btn, SGL_COLOR_RED_ORANGE);
-    
+
     // 创建边框动画
     sgl_anim_t *anim = sgl_anim_create();
     sgl_anim_set_data(anim, btn);
@@ -337,9 +347,8 @@ static void create_border_anim_buttons(sgl_obj_t *parent)
     sgl_anim_set_start_value(anim, 0);
     sgl_anim_set_end_value(anim, 5);
     sgl_anim_set_path(anim, border_anim_path, ANIM_PATH_FUNCTION);
-    sgl_anim_set_repeat_cnt(anim, SGL_ANIM_REPEAT_LOOP);
     sgl_anim_set_finish_cb(anim, anim_finish_cb);
-    sgl_anim_start(anim);
+    sgl_anim_start(anim, SGL_ANIM_REPEAT_LOOP);
 }
 
 /**
@@ -354,7 +363,7 @@ static void create_radius_anim_buttons(sgl_obj_t *parent)
     sgl_label_set_text(label, "Radius Animation");
     sgl_label_set_text_color(label, SGL_COLOR_WHITE);
     sgl_label_set_font(label, &consolas24);
-    
+
     // 创建演示按钮
     sgl_obj_t *btn = sgl_button_create(parent);
     sgl_obj_set_pos(btn, 180, 260);
@@ -363,7 +372,7 @@ static void create_radius_anim_buttons(sgl_obj_t *parent)
     sgl_button_set_color(btn, SGL_COLOR_MAGENTA);
     sgl_button_set_text_color(btn, SGL_COLOR_WHITE);
     sgl_button_set_font(btn, &consolas24);
-    
+
     // 创建圆角动画
     sgl_anim_t *anim = sgl_anim_create();
     sgl_anim_set_data(anim, btn);
@@ -371,9 +380,8 @@ static void create_radius_anim_buttons(sgl_obj_t *parent)
     sgl_anim_set_start_value(anim, 0);
     sgl_anim_set_end_value(anim, 20);
     sgl_anim_set_path(anim, radius_anim_path, ANIM_PATH_FUNCTION);
-    sgl_anim_set_repeat_cnt(anim, SGL_ANIM_REPEAT_LOOP);
     sgl_anim_set_finish_cb(anim, anim_finish_cb);
-    sgl_anim_start(anim);
+    sgl_anim_start(anim, SGL_ANIM_REPEAT_LOOP);
 }
 
 /**
@@ -388,7 +396,7 @@ static void create_center_expand_anim_button(sgl_obj_t *parent)
     sgl_label_set_text(label, "Center Expand");
     sgl_label_set_text_color(label, SGL_COLOR_WHITE);
     sgl_label_set_font(label, &consolas24);
-    
+
     // 创建演示按钮（位于屏幕右侧中央）
     sgl_obj_t *btn = sgl_button_create(parent);
     // 初始尺寸40x40，位于屏幕右侧中央
@@ -397,9 +405,9 @@ static void create_center_expand_anim_button(sgl_obj_t *parent)
     sgl_button_set_text(btn, "中文");
     sgl_button_set_color(btn, SGL_COLOR_CYAN);
     sgl_button_set_text_color(btn, SGL_COLOR_BLACK);
-    sgl_button_set_radius(btn, 10);    
+    sgl_button_set_radius(btn, 10);
     sgl_button_set_font(btn, &consolas24);
-    
+
     // 创建中心扩展动画
     sgl_anim_t *anim = sgl_anim_create();
     sgl_anim_set_data(anim, btn);
@@ -407,10 +415,10 @@ static void create_center_expand_anim_button(sgl_obj_t *parent)
     sgl_anim_set_start_value(anim, 40);
     sgl_anim_set_end_value(anim,100);
     sgl_anim_set_path(anim, center_expand_anim_path, ANIM_PATH_FUNCTION);
-    sgl_anim_set_repeat_cnt(anim, SGL_ANIM_REPEAT_LOOP);
     sgl_anim_set_finish_cb(anim, anim_finish_cb);
-    sgl_anim_start(anim);
+    sgl_anim_start(anim, SGL_ANIM_REPEAT_LOOP);
 }
+
 int main(int argc, char *argv[])
 {
     SGL_UNUSED(argc);
@@ -421,13 +429,16 @@ int main(int argc, char *argv[])
     sgl_port_sdl2_t* sdl2_dev = NULL;
 
     sdl2_dev = sgl_port_sdl2_init();
-    if(sdl2_dev == NULL) 
+    if(sdl2_dev == NULL)
     {
         return -1;
     }
 
-    // 初始化SGL
-    sgl_init();
+    // 初始化SGL（新版本返回 int，需检查返回值）
+    if (sgl_init() != 0) {
+        sgl_port_sdl2_deinit(sdl2_dev);
+        return -1;
+    }
 
     /* 创建主页面 */
     sgl_obj_t *page = sgl_obj_create(NULL);
@@ -453,10 +464,10 @@ int main(int argc, char *argv[])
             break;
         }
 
-        sgl_task_handle();
+        // 主循环任务：事件 + 动画 + 绘制（旧版本为 sgl_task_handle()）
+        sgl_task_handler();
         sgl_port_sdl2_increase_frame_count(sdl2_dev);
 
-      
         SDL_Delay(10);
     }
 
